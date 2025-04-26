@@ -14,22 +14,28 @@ const getContext = (app: cdk.App): StackInput => {
 
 // If you want to define parameters directly
 const envs: Record<string, Partial<StackInput>> = {
-  // If you want to define an anonymous environment, uncomment the following and the content of cdk.json will be ignored.
-  // If you want to define an anonymous environment in parameter.ts, uncomment the following and the content of cdk.json will be ignored.
-  // '': {
-  //   // Parameters for anonymous environment
-  //   // If you want to override the default settings, add the following
-  // },
   dev: {
-    // Parameters for development environment
+    modelRegion: 'ap-northeast-1',
+    modelIds: [
+      'apac.anthropic.claude-3-5-sonnet-20241022-v2:0',
+      'apac.anthropic.claude-3-haiku-20240307-v1:0',
+    ],
+    imageGenerationModelIds: ['amazon.nova-canvas-v1:0'],
+    videoGenerationModelIds: ['amazon.nova-reel-v1:0'],
+    ragEnabled: false,
+    ragKnowledgeBaseEnabled: true,
+    ragKnowledgeBaseAdvancedParsing: true,
+    ragKnowledgeBaseAdvancedParsingModelId: 'anthropic.claude-3-haiku-20240307-v1:0',
+    // agentEnabledはCode Interpreterなので本当はOnにしたい
+    agentEnabled: false,
+    searchAgentEnabled: false,
+    searchApiKey: '<検索エンジンの API キー>',
+    selfSignUpEnabled: false,
+    embeddingModelId: 'amazon.titan-embed-text-v2:0',
+    rerankingModelId: 'amazon.rerank-v1:0',
+    region: 'ap-northeast-1',
+    endpointNames: [], // SageMaker エンドポイントを使用しない
   },
-  staging: {
-    // Parameters for staging environment
-  },
-  prod: {
-    // Parameters for production environment
-  },
-  // If you need other environments, customize them as needed
 };
 
 // For backward compatibility, get parameters from CDK Context > parameter.ts
