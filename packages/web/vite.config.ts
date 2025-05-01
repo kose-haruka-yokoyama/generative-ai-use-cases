@@ -8,6 +8,11 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // ここに追加
+  // server: {
+  //   host: true,
+  //   port: 5173,
+  // },
   build: {
     rollupOptions: {
       plugins: [
